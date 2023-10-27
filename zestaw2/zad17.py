@@ -1,9 +1,17 @@
 from math import log
 
-x = 10
+def f(x):
+    return x**x - 2020
 
-for _ in range(1000):
-    print(x)
-    x = (x+x*log(x)-1)/(1+log(x))
+def df(x):
+    return x**x * (1 + log(x))
+
+x0 = 0
+x1 = 4
+eps = 1e-10
+
+while abs(x1-x0) > eps:
+    x0 = x1
+    x1 = x1 - f(x1)/df(x1)
     
-print(x)
+print(x1)
