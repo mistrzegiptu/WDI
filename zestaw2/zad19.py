@@ -41,4 +41,4 @@ def ulamek(l, m):
             print(")", end="")
             break
         
-ulamek(1, 7)
+ulamek(2, 6)

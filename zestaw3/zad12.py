@@ -20,7 +20,4 @@ for i in range(N-1):
     else:
         longestNegative = max(length, longestNegative)
     
-print(t)
-print(longestPositive)
-print(longestNegative)
 print(longestPositive-longestNegative)
