@@ -1,8 +1,8 @@
 def isPrime(n):
-    if n < 2 or n % 2 == 0:
-        return False
     if n == 2:
         return True
+    if n < 2 or n % 2 == 0:
+        return False
     i = 3
     while i * i <= n:
         if n % i == 0:
@@ -10,26 +10,28 @@ def isPrime(n):
         i += 2
     
     return True
-def F(A, B, num = 0):
-    if A == B == 0:
-        if isPrime(num):
-            print(num)
-        return
-    if A > 0:
-        F(A-1, B, 2*num+1)
-    if B > 0:
-        F(A, B-1, 2*num)
 
-def f(A, B, num = 0):
-    if A == B == 0:
-        return 1 if isPrime(num) else 0
-    res = 0
-    if A > 0:
-        res += f(A-1, B, 2*num+1)
-    if B > 0:
-        res += f(A, B-1, 2*num)
-    return res
+def decimal(bin):
+    n = 0
+    for i in range(len(bin)):
+        if bin[i] == 1:
+            n += 2 ** (len(bin)-i-1)
+    return n
 
-a, b = 3, 3
-print(f(a, b))
-F(a, b)
+def function(T):
+    def rek(T, i, j):
+        n = len(T)
+        if j > n-1:
+            return False
+        if j == n-1:
+            if T[j-1] == 0 and j-i+1 != 2:
+                return False
+            return isPrime(decimal(T[i:j+1]))
+        if isPrime(decimal(T[i:j+1])):
+            return rek(T, j+1, j+2)
+        return rek(T, i, j+1)
+    
+    return rek(T, 0, 1) if len(T) > 1 else False
+
+T = [1,1,1,0,1,1]
+print(function(T))
