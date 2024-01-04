@@ -1,5 +1,17 @@
 from math import log10
 
+def isPrime(n):
+    if n == 2:
+        return True
+    if n < 2 or n % 2 == 0:
+        return False
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+    return True
+
 def function(a, b):
     aLen = int(log10(a)) + 1
     bLen = int(log10(b)) + 1
@@ -16,7 +28,21 @@ def function(a, b):
         b = b // 10
         i -= 1
 
-    print(aSplit)
-    print(bSplit)
+    primeCounter = 0
 
-function(213, 456)
+    def rek(i=0, j=0, num=0):
+        nonlocal primeCounter
+        if i == aLen and j == bLen:
+            if isPrime(num):
+                print(num)
+                primeCounter += 1
+            return
+        if i < aLen:
+            rek(i+1, j, num*10+aSplit[i])
+        if j < bLen:
+            rek(i, j+1, num*10+bSplit[j])
+    
+    rek(0, 0, 0)
+    print(primeCounter)
+
+function(123, 74)
