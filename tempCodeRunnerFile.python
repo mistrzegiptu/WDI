@@ -1,0 +1,3 @@
+
+x = input("Podaj swoją ulubioną liczbę: ")
+print("Twoja ulubiona liczba to: ", x)
