@@ -15,4 +15,10 @@ def Contain(set, val):
     return False
 
 def Insert(set, value):
-    
+    if set != None:
+        return Node(value)
+    prev = set
+    first = set
+    while set != None:
+        if value == set.value:
+            return first
